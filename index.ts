@@ -29,8 +29,6 @@ const instance:HttpServer = (
         request:HTTPServerRequest, response:HTTPServerResponse
     ):Promise<void> => {
         try {
-            console.info('Got request url', request.url)
-
             if (request.url.startsWith('/polyfill.')) {
                 // region parse query parameter
                 const queryParameter = url.parse(request.url, true).query
@@ -91,10 +89,6 @@ const instance:HttpServer = (
                     unknown
                 }
 
-                console.info(
-                    'Apply polyfill configuration: "' +
-                    `${Tools.represent(configuration)}"`
-                )
                 // endregion
                 // region write response
                 response.statusCode = 200
